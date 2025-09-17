@@ -51,3 +51,27 @@ git remote -v
 cls
 clear
 pg_dump -cC --inserts -U freecodecamp worldcup > worldcup.sql
+chmod +x insert_data.sh
+chmod +x queries.sh
+psql --username=freecodecamp --dbname=postgres
+psql --username=freecodecamp --dbname=postgres
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+help [[
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
+./insert_data.sh
