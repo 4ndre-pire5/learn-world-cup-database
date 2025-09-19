@@ -10,6 +10,8 @@ fi
 # Do not change code above this line. Use the PSQL variable above to query your database.
 echo $($PSQL "TRUNCATE TABLE games, teams RESTART IDENTITY") #Zera as tabelas e ID'S. 
 
+
+# Filling out teams table.
 cat games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WINNER_GOALS OPPONENT_GOALS
 do
   if [[ $YEAR != year ]]
@@ -44,6 +46,7 @@ do
   fi
 done
 
+# Filling out games table
 cat games.csv | while IFS="," read YEAR ROUND WINNER OPPONENT WINNER_GOALS OPPONENT_GOALS
 do
   if [[ $YEAR != year ]]
@@ -52,9 +55,12 @@ do
     WINNER_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$WINNER'")
     OPPONENT_ID=$($PSQL "SELECT team_id FROM teams WHERE name='$OPPONENT'")
 
-    #insert year
+    #insert games data
     INSERT_GAMES_DATA=$($PSQL "INSERT INTO games(year, round, winner_id, opponent_id, winner_goals, opponent_goals) VALUES('$YEAR', '$ROUND', '$WINNER_ID', '$OPPONENT_ID', '$WINNER_GOALS', '$OPPONENT_GOALS')")
-    echo INSERTED_GAMES_DATA
+    if [[ $INSERT_GAMES_DATA == "INSERT 0 1" ]]
+    then
+      echo INSERTED_GAMES_DATA
+    fi
   fi
 done
 
